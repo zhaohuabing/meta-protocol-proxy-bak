@@ -1,0 +1,10 @@
+bazel-*
+.vscode
+GPATH
+GTAGS
+GRTAGS
+*.log
+trpc.app.Greeter
+go.sum
+core
+xds

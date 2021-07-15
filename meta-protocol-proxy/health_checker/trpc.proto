@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package envoy.config.health_checker.trpc_proxy.v3;
+
+message Trpc {
+    // 如果only_verify_connect是true，仅仅验证socket是否可以成功连接
+    // 如果only_verify_connect是false，会发tRPC心跳包
+    bool only_verify_connect = 1;
+
+    // only_verify_connect是false，需要以下字段
+
+    // 发送tRPC心跳包时填写的主调名
+    // 格式: trpc.应用名.服务名.pb的service名.接口名
+    string caller = 2;
+    // 发送tRPC心跳包时填写的被调名
+    // 格式: trpc.应用名.服务名.pb的service名.接口名
+    string callee = 3;
+}
