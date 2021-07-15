@@ -19,8 +19,7 @@ envoy_cc_binary(
     name = "envoy-trpc-proxy",
     repository = "@envoy",
     deps = [
-        "//trpc",
-        "//trpc/health_checker",
+        "//meta-protocol-proxy",
         "@envoy//source/exe:envoy_main_entry_lib",
     ],
 )

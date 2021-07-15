@@ -3,8 +3,6 @@ syntax = "proto3";
 package envoy.extensions.filters.network.meta_protocol_proxy.v1alpha;
 
 import "envoy/config/route/v3/route_components.proto";
-import "envoy/type/matcher/v3/string.proto";
-import "envoy/type/v3/range.proto";
 
 import "udpa/annotations/status.proto";
 import "udpa/annotations/versioning.proto";
@@ -20,9 +18,6 @@ option (udpa.annotations.file_status).package_version_status = ACTIVE;
 
 // [#next-free-field: 3]
 message MetaRouteConfiguration {
-  option (udpa.annotations.versioning).previous_message_type =
-      "envoy.config.filter.network.dubbo_proxy.v2alpha1.RouteConfiguration";
-
   // The name of the route configuration. Reserved for future use in asynchronous route discovery.
   string name = 1;
 
@@ -32,9 +27,6 @@ message MetaRouteConfiguration {
 }
 
 message Route {
-  option (udpa.annotations.versioning).previous_message_type =
-      "envoy.config.filter.network.dubbo_proxy.v2alpha1.Route";
-
   // Route matching parameters.
   RouteMatch match = 1 [(validate.rules).message = {required: true}];
 
@@ -43,9 +35,6 @@ message Route {
 }
 
 message RouteMatch {
-  option (udpa.annotations.versioning).previous_message_type =
-      "envoy.config.filter.network.dubbo_proxy.v2alpha1.RouteMatch";
-
   // Specifies a set of headers that the route should match on. The router will check the request’s
   // headers against all the specified headers in the route config. A match will happen if all the
   // headers in the route are present in the request with the same values (or based on presence if
@@ -54,9 +43,6 @@ message RouteMatch {
 }
 
 message RouteAction {
-  option (udpa.annotations.versioning).previous_message_type =
-      "envoy.config.filter.network.dubbo_proxy.v2alpha1.RouteAction";
-
   oneof cluster_specifier {
     option (validate.required) = true;
 

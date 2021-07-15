@@ -1,7 +1,7 @@
 #!/bin/bash
 chmod +x bazel/get_workspace_status
-export CC=clang-10
-export CXX=clang++-10
+export CC=clang-11
+export CXX=clang++-11
 
 export USE_BAZEL_VERSION=$(cat .bazelversion)
 

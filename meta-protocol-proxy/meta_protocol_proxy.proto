@@ -7,9 +7,9 @@ package envoy.extensions.filters.network.meta_protocol_proxy.v1alpha;
 import "envoy/config/core/v3/config_source.proto";
 import "envoy/config/core/v3/extension.proto";
 import "envoy/config/core/v3/protocol.proto";
-i//mport "envoy/config/core/v3/substitution_format_string.proto";
+//import "envoy/config/core/v3/substitution_format_string.proto";
 
-import "envoy/extensions/filters/network/meta_protocol_proxy/v1alpha/route.proto";
+//import "envoy/extensions/filters/network/meta_protocol_proxy/v1alpha/route.proto";
 
 import "envoy/type/tracing/v3/custom_tag.proto";
 //import "envoy/type/v3/percent.proto";
