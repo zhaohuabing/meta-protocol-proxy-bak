@@ -5,13 +5,14 @@ package envoy.extensions.filters.network.meta_protocol_proxy.v1alpha;
 //import "envoy/config/accesslog/v3/accesslog.proto";
 //import "envoy/config/core/v3/base.proto";
 import "envoy/config/core/v3/config_source.proto";
-import "envoy/config/core/v3/extension.proto";
-import "envoy/config/core/v3/protocol.proto";
+import "meta-protocol-proxy/route.proto";
+//import "envoy/config/core/v3/extension.proto";
+//import "envoy/config/core/v3/protocol.proto";
 //import "envoy/config/core/v3/substitution_format_string.proto";
 
 //import "envoy/extensions/filters/network/meta_protocol_proxy/v1alpha/route.proto";
 
-import "envoy/type/tracing/v3/custom_tag.proto";
+//import "envoy/type/tracing/v3/custom_tag.proto";
 //import "envoy/type/v3/percent.proto";
 
 import "google/protobuf/any.proto";
@@ -21,9 +22,9 @@ import "google/protobuf/any.proto";
 //import "envoy/annotations/deprecation.proto";
 //import "udpa/annotations/migrate.proto";
 //import "udpa/annotations/security.proto";
-//import "udpa/annotations/status.proto";
-//import "udpa/annotations/versioning.proto";
-//import "validate/validate.proto";
+import "udpa/annotations/status.proto";
+import "udpa/annotations/versioning.proto";
+import "validate/validate.proto";
 
 option java_package = "io.envoyproxy.envoy.extensions.filters.network.meta_protocol_proxy.v1alpha";
 option java_outer_classname = "MetaProtocolProxyProto";
@@ -52,16 +53,16 @@ message MetaProtocolProxy {
     Rds rds = 3;
 
     // The route table for the meta protocol proxy is static and is specified in this property.
-    config.route.v3.RouteConfiguration route_config = 4;
+    MetaRouteConfiguration route_config = 4;
   }
 
   // The codec which encodes and decodes the application protocol.
-  Codec codec = 4;
+  Codec codec = 5;
 
   // A list of individual Layer-7 filters that make up the filter chain for requests made to
   // the meta protocol proxy. Order matters as the filters are processed sequentially as
   // request events happen.
-  repeated MetaProtocolFilter meta_protocol_filters = 5;
+  repeated MetaProtocolFilter meta_protocol_filters = 6;
 }
 
 message Rds {
