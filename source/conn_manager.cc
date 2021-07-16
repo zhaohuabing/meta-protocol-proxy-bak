@@ -1,4 +1,4 @@
-#include "extensions/filters/network/dubbo_proxy/conn_manager.h"
+#include "source/conn_manager.h"
 
 #include <cstdint>
 
@@ -21,7 +21,7 @@ constexpr uint32_t BufferLimit = UINT32_MAX;
 ConnectionManager::ConnectionManager(Config& config, Random::RandomGenerator& random_generator,
                                      TimeSource& time_system)
     : config_(config), time_system_(time_system),
-      random_generator_(random_generator)) {}
+      random_generator_(random_generator) {}
 
 Network::FilterStatus ConnectionManager::onData(Buffer::Instance& data, bool end_stream) {
   ENVOY_LOG(trace, "metaProtocol: read {} bytes", data.length());

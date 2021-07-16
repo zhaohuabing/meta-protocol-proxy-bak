@@ -9,14 +9,26 @@ load(
 
 envoy_package()
 
+# compile proto
+load("@envoy_api//bazel:api_build_system.bzl", "api_proto_package")
+
+api_proto_package(
+    deps = [
+        "//api/v1alpha:pkg",
+        "@envoy_api//envoy/config/accesslog/v3:pkg",
+        "@envoy_api//envoy/config/core/v3:pkg",
+        "@envoy_api//envoy/config/route/v3:pkg",
+        "@envoy_api//envoy/extensions/filters/network/http_connection_manager/v3:pkg",
+    ],
+)
+
 envoy_cc_library(
-    name = "meta-protocol-proxy",
+    name = "meta_protocol_proxy",
     srcs = ["config.cc"],
     hdrs = ["config.h"],
     repository = "@envoy",
     deps = [
-        "stats",
-        "//api/v1alpha",
+        "//api/v1alpha:pkg_cc_proto",
         ":conn_manager",
         "@envoy//include/envoy/access_log:access_log_interface",
         "@envoy//include/envoy/registry",
@@ -38,6 +50,7 @@ envoy_cc_library(
     ],
     repository = "@envoy",
     deps = [
+        "//api/v1alpha:pkg_cc_proto",
         "@envoy//include/envoy/buffer:buffer_interface",
         "@envoy//include/envoy/common:time_interface",
         "@envoy//include/envoy/event:deferred_deletable",

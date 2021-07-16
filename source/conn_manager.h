@@ -2,7 +2,7 @@
 
 #include "envoy/common/time.h"
 #include "envoy/common/random_generator.h"
-#include "envoy/extensions/filters/network/meta_protocol_proxy/v1alpha/meta_protocol_proxy.pb.h"
+#include "api/v1alpha/meta_protocol_proxy.pb.h"
 #include "envoy/network/connection.h"
 #include "envoy/network/filter.h"
 #include "envoy/stats/scope.h"

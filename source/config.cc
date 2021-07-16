@@ -1,7 +1,7 @@
 #include "source/config.h"
 #include "source/conn_manager.h"
 
-#include "envoy/extensions/filters/network/meta_protocol_proxy/v1alpha/meta_protcol_proxy.pb.h"
+#include "api/v1alpha/meta_protocol_proxy.pb.h"
 #include "envoy/registry/registry.h"
 
 #include "common/config/utility.h"
