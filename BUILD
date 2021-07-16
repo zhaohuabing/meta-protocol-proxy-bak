@@ -7,19 +7,10 @@ load(
 )
 
 envoy_cc_binary(
-    name = "envoy-demo-proxy",
+    name = "meta_protocol_proxy",
     repository = "@envoy",
     deps = [
-        "//demo",
-        "@envoy//source/exe:envoy_main_entry_lib",
-    ],
-)
-
-envoy_cc_binary(
-    name = "envoy-trpc-proxy",
-    repository = "@envoy",
-    deps = [
-        "//meta-protocol-proxy",
+        "//api/proto",
         "@envoy//source/exe:envoy_main_entry_lib",
     ],
 )

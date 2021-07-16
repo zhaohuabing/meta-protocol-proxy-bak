@@ -18,11 +18,10 @@ else
     buildFlags=$buildFlags" -c fastbuild"
 fi
 
-target="envoy-trpc-proxy"
+target="meta_protocol_proxy"
 
 if [ `uname` = "Darwin" ];then
     bazel build ${buildFlags} //:$target --host_force_python=PY3
 else
-    #bazel build -c dbg ${buildFlags} //:$target
-    bazel build -c dbg ${buildFlags} //api/proto:v1_protos
+    bazel build -c dbg ${buildFlags} //:$target
 fi
