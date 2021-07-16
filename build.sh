@@ -24,5 +24,5 @@ if [ `uname` = "Darwin" ];then
     bazel build ${buildFlags} //:$target --host_force_python=PY3
 else
     #bazel build -c dbg ${buildFlags} //:$target
-    bazel build -c dbg ${buildFlags} //meta-protocol-proxy:v1_protos
+    bazel build -c dbg ${buildFlags} //api/proto:v1_protos
 fi

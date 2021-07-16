@@ -1,0 +1,107 @@
+syntax = "proto3";
+
+package envoy.extensions.filters.network.meta_protocol_proxy.v1alpha;
+
+//import "envoy/config/accesslog/v3/accesslog.proto";
+//import "envoy/config/core/v3/base.proto";
+import "envoy/config/core/v3/config_source.proto";
+import "api/proto/route.proto";
+//import "envoy/config/core/v3/extension.proto";
+//import "envoy/config/core/v3/protocol.proto";
+//import "envoy/config/core/v3/substitution_format_string.proto";
+
+//import "envoy/extensions/filters/network/meta_protocol_proxy/v1alpha/route.proto";
+
+//import "envoy/type/tracing/v3/custom_tag.proto";
+//import "envoy/type/v3/percent.proto";
+
+import "google/protobuf/any.proto";
+//import "google/protobuf/duration.proto";
+//import "google/protobuf/wrappers.proto";
+
+//import "envoy/annotations/deprecation.proto";
+//import "udpa/annotations/migrate.proto";
+//import "udpa/annotations/security.proto";
+import "udpa/annotations/status.proto";
+import "udpa/annotations/versioning.proto";
+import "validate/validate.proto";
+
+option java_package = "io.envoyproxy.envoy.extensions.filters.network.meta_protocol_proxy.v1alpha";
+option java_outer_classname = "MetaProtocolProxyProto";
+option java_multiple_files = true;
+option (udpa.annotations.file_status).package_version_status = ACTIVE;
+
+// [#protodoc-title: Meta Protocol proxy]
+// Meta Protocol proxy :ref:`configuration overview <config_meta_protocol_proxy>`.
+// [#extension: envoy.filters.network.meta_protocol_proxy]
+
+message MetaProtocolProxy {
+  option (udpa.annotations.versioning).previous_message_type =
+      "envoy.config.filter.network.meta_protocol_proxy.v1alpha.MetaProtocolProxy";
+
+  // The human readable prefix to use when emitting statistics for the
+  // meta protocol proxy.
+  string stat_prefix = 1 [(validate.rules).string = {min_len: 1}];
+
+  // The name of the application protocol built on top of meta protocol.
+  string application_protocol = 2 [(validate.rules).string = {min_len: 1}];
+
+  oneof route_specifier {
+    option (validate.required) = true;
+
+    // The meta protocol proxy’s route table will be dynamically loaded via the RDS API.
+    Rds rds = 3;
+
+    // The route table for the meta protocol proxy is static and is specified in this property.
+    MetaRouteConfiguration route_config = 4;
+  }
+
+  // The codec which encodes and decodes the application protocol.
+  Codec codec = 5;
+
+  // A list of individual Layer-7 filters that make up the filter chain for requests made to
+  // the meta protocol proxy. Order matters as the filters are processed sequentially as
+  // request events happen.
+  repeated MetaProtocolFilter meta_protocol_filters = 6;
+}
+
+message Rds {
+  option (udpa.annotations.versioning).previous_message_type =
+      "envoy.config.filter.network.meta_protocol_proxy.v1alpha.Rds";
+
+  // Configuration source specifier for RDS.
+  config.core.v3.ConfigSource config_source = 1 [(validate.rules).message = {required: true}];
+
+  // The name of the route configuration. This name will be passed to the RDS
+  // API. This allows an Envoy configuration with multiple HTTP listeners (and
+  // associated HTTP connection manager filters) to use different route
+  // configurations.
+  string route_config_name = 2;
+}
+
+message MetaProtocolFilter {
+  option (udpa.annotations.versioning).previous_message_type =
+      "envoy.config.filter.network.meta_protocol_proxy.v1alpha.MetaProtocolFilter";
+
+  // The name of the filter configuration. The name is used as a fallback to
+  // select an extension if the type of the configuration proto is not
+  // sufficient.
+  string name = 1 [(validate.rules).string = {min_len: 1}];
+
+  // Filter specific configuration which depends on the filter being
+  // instantiated. See the supported filters for further documentation.
+  google.protobuf.Any config = 2;
+}
+
+message Codec {
+  option (udpa.annotations.versioning).previous_message_type =
+      "envoy.config.filter.network.meta_protocol_proxy.v1alpha.Codec";
+
+  // The name of the codec configuration. The name is used as a fallback to
+  // select an extension if the type of the configuration proto is not
+  // sufficient.
+  string name = 1 [(validate.rules).string = {min_len: 1}];
+
+  // Codec specific configuration which depends on the codec being instantiated.
+  google.protobuf.Any config = 2;
+}
