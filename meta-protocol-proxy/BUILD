@@ -23,6 +23,14 @@ api_proto_package(
 )
 
 envoy_cc_library(
+    name = "v1_protos",
+    repository = "@envoy",
+    deps = [
+        ":pkg_cc_proto",
+    ],
+)
+
+envoy_cc_library(
     name = "meta-protocol-proxy",
     srcs = ["config.cc"],
     hdrs = ["config.h"],
