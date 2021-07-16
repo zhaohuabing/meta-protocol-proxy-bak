@@ -3,7 +3,7 @@ syntax = "proto3";
 package envoy.extensions.filters.network.meta_protocol_proxy.v1alpha;
 
 import "envoy/config/core/v3/config_source.proto";
-import "api/proto/route.proto";
+import "api/v1alpha/route.proto";
 
 import "google/protobuf/any.proto";
 
@@ -21,9 +21,6 @@ option (udpa.annotations.file_status).package_version_status = ACTIVE;
 // [#extension: envoy.filters.network.meta_protocol_proxy]
 
 message MetaProtocolProxy {
-  option (udpa.annotations.versioning).previous_message_type =
-      "envoy.config.filter.network.meta_protocol_proxy.v1alpha.MetaProtocolProxy";
-
   // The human readable prefix to use when emitting statistics for the
   // meta protocol proxy.
   string stat_prefix = 1 [(validate.rules).string = {min_len: 1}];
@@ -51,9 +48,6 @@ message MetaProtocolProxy {
 }
 
 message Rds {
-  option (udpa.annotations.versioning).previous_message_type =
-      "envoy.config.filter.network.meta_protocol_proxy.v1alpha.Rds";
-
   // Configuration source specifier for RDS.
   config.core.v3.ConfigSource config_source = 1 [(validate.rules).message = {required: true}];
 
@@ -65,9 +59,6 @@ message Rds {
 }
 
 message MetaProtocolFilter {
-  option (udpa.annotations.versioning).previous_message_type =
-      "envoy.config.filter.network.meta_protocol_proxy.v1alpha.MetaProtocolFilter";
-
   // The name of the filter configuration. The name is used as a fallback to
   // select an extension if the type of the configuration proto is not
   // sufficient.
@@ -79,9 +70,6 @@ message MetaProtocolFilter {
 }
 
 message Codec {
-  option (udpa.annotations.versioning).previous_message_type =
-      "envoy.config.filter.network.meta_protocol_proxy.v1alpha.Codec";
-
   // The name of the codec configuration. The name is used as a fallback to
   // select an extension if the type of the configuration proto is not
   // sufficient.

@@ -10,7 +10,7 @@ envoy_cc_binary(
     name = "meta_protocol_proxy",
     repository = "@envoy",
     deps = [
-        "//api/proto",
+        "//api/v1alpha",
 	"@envoy//source/exe:envoy_main_entry_lib",
     ],
 )

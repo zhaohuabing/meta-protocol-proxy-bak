@@ -21,7 +21,7 @@ api_proto_package(
 )
 
 envoy_cc_library(
-    name = "proto",
+    name = "v1alpha",
     repository = "@envoy",
     deps = [
         ":pkg_cc_proto",
