@@ -2,26 +2,11 @@ syntax = "proto3";
 
 package envoy.extensions.filters.network.meta_protocol_proxy.v1alpha;
 
-//import "envoy/config/accesslog/v3/accesslog.proto";
-//import "envoy/config/core/v3/base.proto";
 import "envoy/config/core/v3/config_source.proto";
 import "api/proto/route.proto";
-//import "envoy/config/core/v3/extension.proto";
-//import "envoy/config/core/v3/protocol.proto";
-//import "envoy/config/core/v3/substitution_format_string.proto";
-
-//import "envoy/extensions/filters/network/meta_protocol_proxy/v1alpha/route.proto";
-
-//import "envoy/type/tracing/v3/custom_tag.proto";
-//import "envoy/type/v3/percent.proto";
 
 import "google/protobuf/any.proto";
-//import "google/protobuf/duration.proto";
-//import "google/protobuf/wrappers.proto";
 
-//import "envoy/annotations/deprecation.proto";
-//import "udpa/annotations/migrate.proto";
-//import "udpa/annotations/security.proto";
 import "udpa/annotations/status.proto";
 import "udpa/annotations/versioning.proto";
 import "validate/validate.proto";

@@ -11,6 +11,6 @@ envoy_cc_binary(
     repository = "@envoy",
     deps = [
         "//api/proto",
-        "@envoy//source/exe:envoy_main_entry_lib",
+	"@envoy//source/exe:envoy_main_entry_lib",
     ],
 )
