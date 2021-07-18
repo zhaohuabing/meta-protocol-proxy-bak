@@ -3,6 +3,7 @@
 #include <string>
 
 #include "api/v1alpha/meta_protocol_proxy.pb.h"
+#include "api/v1alpha/meta_protocol_proxy.pb.validate.h"
 
 #include "extensions/filters/network/common/factory_base.h"
 
