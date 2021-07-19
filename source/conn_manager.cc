@@ -47,7 +47,7 @@ Network::FilterStatus ConnectionManager::onData(Buffer::Instance& data, bool end
      */
 
     ENVOY_LOG(debug, "metaProtocol: end data processing");
-    resetAllMessages(false);
+    //resetAllMessages(false);
     read_callbacks_->connection().close(Network::ConnectionCloseType::FlushWrite);
   }
 
@@ -66,7 +66,8 @@ void ConnectionManager::initializeReadFilterCallbacks(Network::ReadFilterCallbac
 }
 
 void ConnectionManager::onEvent(Network::ConnectionEvent event) {
-  resetAllMessages(event == Network::ConnectionEvent::LocalClose);
+  (void)event;
+  //resetAllMessages(event == Network::ConnectionEvent::LocalClose);
 }
 
 void ConnectionManager::onAboveWriteBufferHighWatermark() {
@@ -171,12 +172,12 @@ void ConnectionManager::sendLocalReply(MessageMetadata& metadata,
 void ConnectionManager::continueDecoding() {
   ENVOY_CONN_LOG(debug, "dubbo filter continued", read_callbacks_->connection());
   stopped_ = false;
-  dispatch();
+  //dispatch();
 
   if (!stopped_ && half_closed_) {
     // If we're half closed, but not stopped waiting for an upstream,
     // reset any pending rpcs and close the connection.
-    resetAllMessages(false);
+    //resetAllMessages(false);
     read_callbacks_->connection().close(Network::ConnectionCloseType::FlushWrite);
   }
 }

@@ -33,7 +33,7 @@ REGISTER_FACTORY(MetaProtocolProxyFilterConfigFactory,
 // class ConfigImpl.
 ConfigImpl::ConfigImpl(const MetaProctolProxyConfig& config,
                        Server::Configuration::FactoryContext& context)
-    : context_(context);//, stats_prefix_(fmt::format("metaprotocol.{}.", config.stat_prefix())),
+    : context_(context), stats_prefix_(fmt::format("metaprotocol.{}.", config.stat_prefix())){
       //stats_(DubboFilterStats::generateStats(stats_prefix_, context_.scope())),
       //serialization_type_(
       //    SerializationTypeMapper::lookupSerializationType(config.serialization_type())),

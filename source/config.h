@@ -7,10 +7,14 @@
 
 #include "extensions/filters/network/common/factory_base.h"
 
+#include "source/conn_manager.h"
+
 namespace Envoy {
 namespace Extensions {
 namespace NetworkFilters {
 namespace MetaProtocolProxy {
+
+constexpr char CanonicalName[] = "envoy.filters.network.meta_protocol_proxy";
 
 /**
  * Config registration for the meta protocol proxy filter. @see NamedNetworkFilterConfigFactory.
@@ -21,7 +25,7 @@ public:
     // Meta protocol proxy filter
     const std::string MetaProtocolProxy = "envoy.filters.network.meta_protocol_proxy";
 
-    MetaProtocolProxyFilterConfigFactory() : FactoryBase(MetaProtocolProxy, true) {}
+    MetaProtocolProxyFilterConfigFactory() : FactoryBase(CanonicalName, true) {}
 
 private:
   Network::FilterFactoryCb createFilterFactoryFromProtoTyped(
@@ -53,7 +57,7 @@ public:
   //Router::Config& routerConfig() override { return *this; }
   //ProtocolPtr createProtocol() override;
 
-private:
+//private:
   //void registerFilter(const DubboFilterConfig& proto_config);
 
   Server::Configuration::FactoryContext& context_;
